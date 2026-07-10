@@ -16,3 +16,22 @@ text_sensor:
   # AquaPi Version
   - id: !extend app_version
     name: "AquaPi Kits Version"
+
+switch:
+  - platform: gpio
+    id: en_rtd
+    name: "RTD Enable"
+    pin: GPIO9
+    internal: true
+    restore_mode: ALWAYS_ON
+    entity_category: config
+
+esphome:
+  on_boot:
+    priority: 800
+    then:
+      - switch.turn_on: en_rtd
+      - button.press: read_ph
+      - button.press: read_orp
+      - button.press: read_do
+      - button.press: read_rtd
