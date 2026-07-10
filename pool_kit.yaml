@@ -19,7 +19,7 @@ packages:
   TheRealFalseReality.ph: github://TheRealFalseReality/aquapi/common/ezo_ph.yaml
   # TheRealFalseReality.rtd: github://TheRealFalseReality/aquapi/common/ezo_rtd.yaml
   TheRealFalseReality.ezo_rtd: 
-    url: https://github.com/TheRealFalseReality/Aquaponics_Pool_Kit-AtlasScientific
+    url: https://github.com/TheRealFalseReality/aquapi
     ref: main
     file: common/ezo_rtd.yaml
     refresh: 1s
