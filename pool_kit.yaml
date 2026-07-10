@@ -34,6 +34,12 @@ packages:
   esp32_saola_1: !include common/espboard.yaml
   aquapi_kits: !include common/aquapi_kits.yaml
   TFT_st7789v: !include common/TFT_st7789v.yaml
+  
+esphome:
+  on_boot:
+    priority: 800
+    then:
+      - button.press: read_orp
           
 select:
   - platform: template

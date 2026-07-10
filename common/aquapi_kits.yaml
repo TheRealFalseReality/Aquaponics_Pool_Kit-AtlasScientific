@@ -32,6 +32,6 @@ esphome:
     then:
       - switch.turn_on: en_rtd
       - button.press: read_ph
-      - button.press: read_orp
-      - button.press: read_do
       - button.press: read_rtd
+      - button.press: read_do
+      - button.press: read_ec
