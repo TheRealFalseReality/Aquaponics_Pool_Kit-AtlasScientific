@@ -34,7 +34,7 @@ packages:
   esp32_saola_1: !include common/espboard.yaml
   aquapi_kits: !include common/aquapi_kits.yaml
   TFT_st7789v: !include common/TFT_st7789v.yaml
-  
+
 esphome:
   on_boot:
     priority: 800
@@ -107,10 +107,18 @@ display:
         it.line(10, 72, 14, 72, id(color_white));               
         it.line(12, 85, 12, 76, id(color_white));               
         it.print(26, 90, id(my_font), id(color_white), TextAlign::BASELINE_LEFT, "Tmp");
-        if (id(rtd_ezo).has_state()) {
-          it.printf(85, 90, id(my_font), id(color_white), TextAlign::BASELINE_LEFT, "%.1f C", id(rtd_ezo).state);
+        if (id(temp_display_unit).current_option() == "Fahrenheit") {
+          if (id(rtd_temp_f).has_state()) {
+            it.printf(85, 90, id(my_font), id(color_white), TextAlign::BASELINE_LEFT, "%.1f F", id(rtd_temp_f).state);
+          } else {
+            it.print(85, 90, id(my_font), id(color_white), TextAlign::BASELINE_LEFT, "no data");
+          }
         } else {
-          it.print(85, 90, id(my_font), id(color_white), TextAlign::BASELINE_LEFT, "no data");
+          if (id(rtd_ezo).has_state()) {
+            it.printf(85, 90, id(my_font), id(color_white), TextAlign::BASELINE_LEFT, "%.1f C", id(rtd_ezo).state);
+          } else {
+            it.print(85, 90, id(my_font), id(color_white), TextAlign::BASELINE_LEFT, "no data");
+          }
         }
         if (id(ideal_temp_rtd).state) {
           it.line(215, 86, 219, 90, id(color_white)); it.line(215, 87, 219, 91, id(color_white));

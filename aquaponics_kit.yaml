@@ -75,10 +75,18 @@ display:
       // --- Section 3: RTD Temp (Gray / White Text) ---
       it.filled_rectangle(0, 44, 240, 22, id(color_rtd));
       it.print(10, 62, id(my_font), id(color_white), TextAlign::BASELINE_LEFT, "Temp");
-      if (id(rtd_ezo).has_state()) {
-        it.printf(110, 62, id(my_font), id(color_white), TextAlign::BASELINE_LEFT, "%.1f C", id(rtd_ezo).state);
+      if (id(temp_display_unit).current_option() == "Fahrenheit") {
+        if (id(rtd_temp_f).has_state()) {
+          it.printf(110, 62, id(my_font), id(color_white), TextAlign::BASELINE_LEFT, "%.1f F", id(rtd_temp_f).state);
+        } else {
+          it.print(110, 62, id(my_font), id(color_white), TextAlign::BASELINE_LEFT, "...");
+        }
       } else {
-        it.print(110, 62, id(my_font), id(color_white), TextAlign::BASELINE_LEFT, "...");
+        if (id(rtd_ezo).has_state()) {
+          it.printf(110, 62, id(my_font), id(color_white), TextAlign::BASELINE_LEFT, "%.1f C", id(rtd_ezo).state);
+        } else {
+          it.print(110, 62, id(my_font), id(color_white), TextAlign::BASELINE_LEFT, "...");
+        }
       }
       // Status Icon
       if (id(ideal_temp_rtd).state) {

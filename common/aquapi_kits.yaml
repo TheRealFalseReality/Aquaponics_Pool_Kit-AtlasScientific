@@ -35,3 +35,35 @@ esphome:
       - button.press: read_rtd
       - button.press: read_do
       - button.press: read_ec
+
+select:
+  - platform: template
+    name: "Temperature Display Unit"
+    id: temp_display_unit
+    icon: mdi:temperature-celsius
+    options:
+      - "Celsius"
+      - "Fahrenheit"
+    initial_option: "Celsius"
+    optimistic: true
+    restore_value: true
+    entity_category: "Config"
+    on_value:
+      then:
+        - component.update: tft_display
+
+sensor:
+  - platform: template
+    name: "Temperature EZO °F"
+    id: rtd_temp_f
+    unit_of_measurement: "°F"
+    accuracy_decimals: 1
+    device_class: temperature
+    state_class: measurement
+    update_interval: "${update_rtd}"
+    lambda: |-
+      if (!id(rtd_ezo).has_state()) return NAN;
+      return (id(rtd_ezo).state * 9.0f / 5.0f) + 32.0f;
+    web_server:
+      sorting_group_id: sorting_group_rtd
+      sorting_weight: 11
