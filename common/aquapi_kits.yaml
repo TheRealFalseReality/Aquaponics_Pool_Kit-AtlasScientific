@@ -58,6 +58,7 @@ sensor:
     id: rtd_temp_f
     unit_of_measurement: "°F"
     accuracy_decimals: 1
+    internal: true
     device_class: temperature
     state_class: measurement
     update_interval: "${update_rtd}"
