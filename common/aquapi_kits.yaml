@@ -44,7 +44,7 @@ select:
     options:
       - "Celsius"
       - "Fahrenheit"
-    initial_option: "Celsius"
+    initial_option: "Fahrenheit"
     optimistic: true
     restore_value: true
     entity_category: "Config"
